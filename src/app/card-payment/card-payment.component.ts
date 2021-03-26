@@ -21,7 +21,10 @@ export class CardPaymentComponent implements OnInit, OnDestroy {
     currentMonth = currentDate.getMonth() + 1;
     currentYear = currentDate.getFullYear();
 
-    constructor(private formBuilder: FormBuilder, private facade: CreditCardPaymentFacade) { }
+    constructor(
+        private formBuilder: FormBuilder,
+        private facade: CreditCardPaymentFacade
+    ) { }
 
     // tslint:disable-next-line:typedef
     ngOnInit() {
@@ -58,7 +61,7 @@ export class CardPaymentComponent implements OnInit, OnDestroy {
 
     // tslint:disable-next-line:typedef
     submitForm() {
-        if (this.paymentForm.status === 'VALID') {
+        if (this.paymentForm.valid) {
             const expiryDate = new Date(this.paymentForm.get('expirationYear').value, this.paymentForm.get('expirationMonth').value, 1);
             const paymentFormData = {
                 creditCardNumber: this.paymentForm.get('cardNumber').value.toString(),
